@@ -1,0 +1,27 @@
+.footer {
+    background-color: #364485;
+    margin-top: auto;
+    padding: 4rem 0;
+
+    &__links {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        flex-wrap: wrap;
+        color: white;
+
+        li a {
+            color: #969FC6;
+            padding-right : 1rem;
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+
+    &__info {
+        color: #969FC6;
+        font-size: 0.8rem;
+    }
+}

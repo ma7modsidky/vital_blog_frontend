@@ -1,0 +1,63 @@
+@import '../../assets/scss/_mixins.scss';
+
+.header{
+    &__top{
+        background-color: #4E5C9B;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+    }
+    &__bottom {
+        background-color: #364485;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: space-between;
+        ul{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-items: flex-start;
+            align-items: center;
+            list-style: none;
+            
+
+            li {
+                padding: 0.5rem;
+                color: white;
+                font-size: 1rem;
+
+                &:hover{
+                    color: yellow;
+                }
+            }
+        }
+        .categories {
+            @include breakpoint-down(small) {
+                display: none;
+            }
+        }
+    }
+    &__logo {
+        img {
+            width: 7rem;
+            height: 2rem;
+        }
+    }
+    &__toggle {
+        @include breakpoint-up(medium) {
+            display: none;
+        }
+        >span {background-color: white;
+            display: block;
+            width: 26px;
+            height: 2px;
+            transition: all 300ms ease-in-out;
+            transform-origin: 3px 1px;
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
