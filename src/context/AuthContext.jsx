@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState} from 'react'
 import { useNavigate  } from 'react-router-dom'
 import jwt_decode from "jwt-decode";
 import axiosInstance from '../axios';
@@ -15,7 +15,7 @@ export const AuthProvider = ({children}) => {
 
     const navigate = useNavigate();
 
-    const login = (formData) =>{
+    const login = (formData, from) =>{
         axiosInstance
 			.post(`token/`, {
 				email: formData.email,
@@ -29,7 +29,7 @@ export const AuthProvider = ({children}) => {
                 setAuthTokens(res.data)
                 setUser(jwt_decode(res.data.access))
                 setErr(null)
-                navigate('/')
+                navigate(from)
             })
             .catch((err)=>{
                 console.log(err)

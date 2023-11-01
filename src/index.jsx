@@ -1,19 +1,20 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css';
 import App from './App';
 import {
-  BrowserRouter as Router,
+  BrowserRouter as Router, Routes , Route
 } from "react-router-dom";
 import { AuthProvider } from './context/AuthContext'
 
 // this just renders the app component
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Router>
       <AuthProvider>
-        <App />
+      <Routes>
+        <Route path="/*" element={<App />}/>
+      </Routes>
       </AuthProvider>
     </Router>
   // </React.StrictMode>

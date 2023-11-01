@@ -36,7 +36,7 @@ export default function Header() {
 				<ul className='categories'>
 				<li ><Link to={`/category_list/`}>All</Link></li>
 				{data.dataIsReturned?
-					data.categories.map((item)=>(
+					data.categories.slice(0,5).map((item)=>(
 						<li key={item.id}><Link to={`/category/${item.name}`}>{item.name}</Link></li>
 					))
 				:

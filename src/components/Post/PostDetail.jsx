@@ -1,4 +1,4 @@
-import React from 'react'
+
 import userimg from '../../assets/imgs/no_profile_picture.webp'
 
 
@@ -125,7 +125,6 @@ export default function PostDetail() {
     if(err) return `error >> ${err}`
     return (        
         <div className='PostDetail'>
-    
                 <h1 className='PostDetail_title'>{post.title}</h1>
                 <div className="PostDetail_wrapper">
                     <p className='PostDetail_brief'>{post.brief}</p>

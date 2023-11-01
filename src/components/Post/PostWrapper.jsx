@@ -4,14 +4,14 @@ import {Link} from "react-router-dom"
 import './posts.scss'
 import postimg from '../../assets/imgs/unavailable-image.jpg'
 
-export default function PostWrapper({title , posts}) {
+export default function PostWrapper({title , posts , limit=6}) {
     return (
         
         <div className='PostWrapper'>
             <h2 className='PostWrapper_title'>{title}</h2>
             {posts && posts.length>0?
             <div className="PostWrapper_body">
-                {posts.map((post,index) => (
+                {posts.slice(0,limit).map((post,index) => (
                     <Link to={"/post/" + post.id} className='gridItem' key={index}>
                         <div className="post">
                             <div className="post_img">

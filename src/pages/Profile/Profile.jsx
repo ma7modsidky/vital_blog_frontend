@@ -28,21 +28,23 @@ function ProfileInfo({user}) {
 }
 
 
-function ProfileHistory(props) {
-    let {posts, setData } = props
+function ProfileHistory({data, setData }) {
+    let {posts, dataIsReturned } = data
     function handleDelete(e){
-        
         axiosInstance
-        .delete(`/${e.target.attributes.postid.value}/`)
+        .delete(`/posts/${e.target.attributes.postid.value}/`)
         .then(res=> {
-            setData({'posts': posts ,dataIsReturned : false})
-            let newList = posts.filter((post)=> post.id !== e.target.attributes.postid.value)
-            setData({'posts' : newList, dataIsReturned : true})
+            // setData({'posts': posts ,dataIsReturned : false})
+            // let newList = posts.filter((post)=> post.id !== e.target.attributes.postid.value)
+            // console.log('the new list', newList)
+            // setData({'posts' : newList, dataIsReturned : true})
             console.log('succesfully deleted')
-        })
+            setData({'posts' : [], dataIsReturned : false})
+        }).then(()=> {console.log('test')})
         .catch(err => console.log(err.response))
     }
     return (
+        
         <div className='profile_history'>
             {posts?
             <table>
@@ -77,7 +79,7 @@ function ProfileHistory(props) {
 
 function Profile() {
     const {user ,setUser} = useContext(AuthContext)
-    
+
     const [data, setData] = useState({posts:[], dataIsReturned: false ,});
     const [userData, setUserData] = useState({user:null ,dataIsReturned: false});
     useEffect(()=>{
@@ -128,6 +130,7 @@ function Profile() {
         //     </Routes>
                
         // </div>
+        // posts={data.posts}
         <div className='profile'>
                     <>
                     <h1>Your Profile</h1>
@@ -137,7 +140,7 @@ function Profile() {
                     }
                     <h2>Your Posts ({data.posts.length}) <Link to='/new_post' className='btn' style={{float:'right',margin:'0', backgroundColor:'green'}}>New Post</Link></h2> 
                     {data.dataIsReturned?
-                    <ProfileHistory posts={data.posts} setData={setData}/>:
+                    <ProfileHistory data={data}  setData={setData}/>:
                     <p>loading</p>
                     }
                     </>

@@ -33,7 +33,7 @@ function Home() {
                 <PostFeatured data={featured} />
               </>
             )}
-            <PostWrapper title="latest posts" posts={posts} />
+            <PostWrapper title="latest posts" posts={posts} limit={6} />
           </div>
         ) : (
           <p>Loading, Please wait a second ...</p>

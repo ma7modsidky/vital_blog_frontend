@@ -1,10 +1,10 @@
-import React, {useState, useContext} from 'react'
-import { useNavigate } from 'react-router-dom';
+import {useState} from 'react'
 import axiosInstance from '../../axios';
-import AuthContext from '../../context/AuthContext'
 import './login.scss'
-
+import { useLocation } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 export default function Login() {
+    const location = useLocation()
     // For toggle between login and sign up page
     const [toggle, setToggle] = useState(false)
     const [signUpError, setSignUpError] = useState(null)
@@ -12,8 +12,7 @@ export default function Login() {
         toggle ? setToggle(false):setToggle(true)
     }
     /////////////////////////////////////////////
-    let {login , err , setErr} = useContext(AuthContext)
-    const navigate = useNavigate();
+    let {login , err} = useAuth()
     // For controlling the login form and object.freeze is like a security measure
     const initialFormData = Object.freeze({
 		email: '',
@@ -28,6 +27,7 @@ export default function Login() {
 	});
     const [formData, updateFormData] = useState(initialFormData);
     const [signUpData, updateSignUpData] = useState(initialSignUpData);
+    // handling form fields changes
     const handleChange = (e) => {
 		updateFormData({
 			...formData,
@@ -42,8 +42,10 @@ export default function Login() {
 	};
     //for handling the submit button
     const handleSubmit = (e) => {
+        const from = location.state?.from?.pathname || '/'
 		e.preventDefault();
-        login(formData)
+        console.log("coming from --> ",from)
+        login(formData, from)
 	};
 
     const handleSignUp = (e) =>{
@@ -66,6 +68,7 @@ export default function Login() {
             console.log(err)
         })
     }
+
     return (
         <div className="login-page">
             <div className="form">
@@ -75,10 +78,6 @@ export default function Login() {
                     <input type="text" placeholder="Username" name='user_name' onChange={handleSignUpChange} value={signUpData.user_name}/>
                     <input type="password" placeholder="Password" name='password' onChange={handleSignUpChange} value={signUpData.password}/>
                     <input type="password" placeholder="Confirm password"  name='password2' onChange={handleSignUpChange} value={signUpData.password2}/>
-                    {/* {signUpError?
-                    
-                    <p style={{color:'red'}}>{signUpError.response.data.detail}</p>
-                    :null} */}
                     {signUpError && <div style={{color:'red'}}>
                         {Object.keys(signUpError.response.data).map((key, i) => (
                             <p style={{color:'red'}} key={i}>{key} : {signUpError.response.data[key]}</p>
@@ -94,7 +93,6 @@ export default function Login() {
                     <input type="password" placeholder="Password" name="password" onChange={handleChange} value={formData.password}/>
                     <button onClick={handleSubmit}>login</button>
                     {err?
-                    // <p style={{color:'red'}}>Wrong email, username or password. Try again or click Recover password’ to reset it.</p>:null}
                     <p style={{color:'red'}}>{err.response.data.detail}</p>:null}
                     <p className="message">Not registered? <a  onClick={toggleLogin}>Create an account</a></p>
                     <p className="message">Forgot password? <a >Recover password</a></p>

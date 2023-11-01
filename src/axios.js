@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseURL = 'http://127.0.0.1:8000/api/'
+// const baseURL = 'http://127.0.0.1:8000/api/'
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 const axiosInstance = axios.create({
     baseURL: baseURL,
@@ -16,18 +17,23 @@ const axiosInstance = axios.create({
     },
 })
 
+// Add a response interceptor for error handling
 axiosInstance.interceptors.response.use(
 	(response) => {
+		// Any status code that lies (within) the range of (2xx) cause this function to trigger
 		return response;
 	},
 	async function (error) {
+		// Any status codes that falls (outside) the range of (2xx) cause this function to trigger
+		console.error(error)
 		const originalRequest = error.config;
 		if (typeof error.response === 'undefined') {
-			console.log('unkown err / no server response')
+			// No response from the server
+			console.log('unkown errork, or no server response')
 			alert(
-				'A server/network error occurred. ' +
+				'A server/network error occurred. Server might be down.' +
 					'Looks like CORS might be the problem. ' +
-					'Sorry about this - we will get it fixed shortly.'
+					'Sorry about this - we will get it fixed shortly. Try refreshing shortly soon'
 			);
 			return Promise.reject(error);
 		}
@@ -35,7 +41,7 @@ axiosInstance.interceptors.response.use(
 			error.response.status === 401 &&
 			originalRequest.url === baseURL + 'token/refresh/'
 		) {
-			console.log('need new refresh');
+			console.log('need new refresh token');
 			window.location.href = '/login/';
 			return Promise.reject(error);
 		}
@@ -44,7 +50,7 @@ axiosInstance.interceptors.response.use(
 			error.response.statusText === 'Unauthorized' &&
 			!originalRequest._retry
 		) {
-			console.log('need new access')
+			console.log('need new access token')
 			originalRequest._retry = true;
 			const refreshToken = localStorage.getItem('refresh_token');
 
@@ -72,7 +78,7 @@ axiosInstance.interceptors.response.use(
 							return axiosInstance(originalRequest);
 						})
 						.catch((err) => {
-							console.log('failing this step');
+							console.log('Failed to obtain a new access token from a refresh token');
 							console.log(err.response);
 						});
 				} else {
@@ -81,8 +87,8 @@ axiosInstance.interceptors.response.use(
 				}
 			} else {
 				console.log('Refresh token not available.');
-				alert('PLease Login to view this page')
-				window.location.href = '/login';
+				// alert('PLease Login to view this page')
+				// window.location.href = '/login';
 			}
 		}
 

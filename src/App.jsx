@@ -4,8 +4,6 @@ import Main from './components/Main/Main'
 import './App.css';
 import './assets/scss/globals.scss'
 
-
-
 function App() {
   return (
     <div className="App">
