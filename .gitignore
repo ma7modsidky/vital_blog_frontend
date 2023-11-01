@@ -1,5 +1,5 @@
 # Environment variables
-.env
+# .env
 
 # old src files
 src/old_src/*
