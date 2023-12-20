@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from 'react'
+import { useEffect , useState} from 'react'
 import axiosInstance from '../../axios';
 import PostFeatured from '../../components/Post/PostFeatured'
 import PostWrapper from '../../components/Post/PostWrapper'

@@ -27,8 +27,8 @@ axiosInstance.interceptors.response.use(
 		// Any status codes that falls (outside) the range of (2xx) cause this function to trigger
 		console.error(error)
 		const originalRequest = error.config;
+		// No response from the server
 		if (typeof error.response === 'undefined') {
-			// No response from the server
 			console.log('unkown errork, or no server response')
 			alert(
 				'A server/network error occurred. Server might be down.' +
@@ -37,6 +37,8 @@ axiosInstance.interceptors.response.use(
 			);
 			return Promise.reject(error);
 		}
+
+		//User is not authenticated 
 		if (
 			error.response.status === 401 &&
 			originalRequest.url === baseURL + 'token/refresh/'

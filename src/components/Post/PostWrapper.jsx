@@ -1,5 +1,4 @@
-import React from 'react'
-
+/* eslint-disable react/prop-types */
 import {Link} from "react-router-dom"
 import './posts.scss'
 import postimg from '../../assets/imgs/unavailable-image.jpg'
