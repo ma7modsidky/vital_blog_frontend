@@ -16,7 +16,7 @@ export default function PostFeatured(props) {
             <div className="PostFeatured__info">
                 <Link to={"/post/" + props.data.id} >
                     <h3>{props.data.title}</h3>
-                    <p>{props.data.brief}</p>
+                    <p className='PostFeatured__info_brief'>{props.data.brief}</p>
                     <p><span>{props.data.author}</span> - <span>{props.data.updated}</span></p>
                 </Link>
             </div>
