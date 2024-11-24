@@ -11,7 +11,7 @@ export default function Login() {
     const toggleLogin = () =>{
         toggle ? setToggle(false):setToggle(true)
     }
-    /////////////////////////////////////////////
+
     let {login , err} = useAuth()
     // For controlling the login form and object.freeze is like a security measure
     const initialFormData = Object.freeze({
@@ -58,6 +58,7 @@ export default function Login() {
             password : signUpData.password
         })
         .then((res) => {
+            console.log(res);
             toggleLogin()
             alert(
 				'You have successfully created an account please login to continue'

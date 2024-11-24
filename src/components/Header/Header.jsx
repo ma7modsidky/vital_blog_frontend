@@ -1,4 +1,4 @@
-import React, { useEffect, useState , useContext} from 'react'
+import { useEffect, useState , useContext} from 'react'
 import logo from '../../assets/imgs/logo.png'
 import {Link} from 'react-router-dom'
 
@@ -13,6 +13,7 @@ export default function Header() {
 		axiosInstance
 		.get(`categories`)
 		.then(res=>{
+			console.log(res.data);
 			setData({categories:res.data, dataIsReturned:true})
 			
 		})

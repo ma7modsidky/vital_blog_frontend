@@ -1,0 +1,14 @@
+a:visited a:hover a:-moz-any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+a,
+a:visited a:hover a:any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex {
+  display: flex;
+}/*# sourceMappingURL=globals.css.map */

@@ -1,0 +1,346 @@
+.PostFeatured {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 1rem;
+  border-bottom: 4px solid #3b5899;
+  text-align: left;
+}
+@media (max-width: 63.9375em) {
+  .PostFeatured {
+    flex-direction: column;
+  }
+}
+.PostFeatured__img {
+  flex: 3;
+  margin-right: 0rem;
+}
+.PostFeatured__img img {
+  width: 100%;
+  max-height: 20rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.PostFeatured__info {
+  flex: 2;
+  padding: 0 2rem;
+}
+.PostFeatured__info_brief {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+@media (max-width: 63.9375em) {
+  .PostFeatured__info {
+    padding: 1rem 0;
+  }
+}
+.PostFeatured__info h3 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+}
+.PostFeatured__info p {
+  font-size: 1.2rem;
+  color: #555555;
+  overflow: clip;
+}
+@media (max-width: 63.9375em) {
+  .PostFeatured__info p {
+    max-height: 7rem;
+  }
+}
+.PostFeatured__info p span {
+  color: #3b5899;
+}
+
+.PostWrapper {
+  border-bottom: 4px solid #3b5899;
+  padding: 1rem 0;
+}
+.PostWrapper_title {
+  text-align: left;
+  text-transform: uppercase;
+  padding: 1rem 0;
+}
+.PostWrapper_body {
+  display: grid;
+  grid-template-columns: repeat(3, 32%);
+  grid-gap: 2rem;
+  text-align: left;
+}
+@media (max-width: 63.9375em) {
+  .PostWrapper_body {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 39.9375em) {
+  .PostWrapper_body {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.PostWrapper .post {
+  border-radius: 5px;
+  padding: 1.5rem;
+  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
+}
+.PostWrapper .post_img img {
+  width: 100%;
+  height: 10rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.PostWrapper .post_title {
+  font-size: 1.4rem;
+  color: #1c1c1c;
+  margin: 0.5rem 0;
+  height: 3.5rem;
+  overflow: clip;
+}
+@media (max-width: 39.9375em) {
+  .PostWrapper .post_title {
+    height: auto;
+  }
+}
+.PostWrapper .post_body {
+  color: #555555;
+  height: 6.5rem;
+  max-height: 10rem;
+  width: 100%;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+@media (max-width: 39.9375em) {
+  .PostWrapper .post_body {
+    height: auto;
+  }
+}
+.PostWrapper .post_author {
+  color: #3b5899;
+}
+.PostWrapper .post_date {
+  color: #4e4d4d;
+  font-size: bold;
+}
+.PostWrapper .post .category {
+  text-align: center;
+}
+.PostWrapper .btn_more {
+  display: block;
+  width: 100px;
+  background-color: #3b5899;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  margin: 2rem auto;
+}
+.PostWrapper .btn_more:hover {
+  background-color: #364485;
+}
+
+.PostDetail {
+  text-align: left;
+}
+.PostDetail_title {
+  font-size: 48px;
+  margin: 0 auto;
+}
+@media (max-width: 63.9375em) {
+  .PostDetail_title {
+    font-size: 36px;
+  }
+}
+.PostDetail_wrapper {
+  width: 100%;
+}
+.PostDetail_brief, .PostDetail_body {
+  font-size: 1.18rem;
+  line-height: 1.6em;
+  color: #555555;
+}
+@media (max-width: 63.9375em) {
+  .PostDetail_brief, .PostDetail_body {
+    font-size: 1rem;
+  }
+}
+.PostDetail_brief pre, .PostDetail_body pre {
+  padding: 0.3rem;
+  background-color: #4e4d4d;
+  color: white;
+  overflow-x: scroll;
+}
+.PostDetail_author {
+  color: #3b5899;
+  padding-top: 1rem;
+}
+.PostDetail_date {
+  color: #555555;
+  margin: 0.5rem 0;
+}
+.PostDetail_image img {
+  width: 60%;
+  max-height: 25rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 63.9375em) {
+  .PostDetail_image img {
+    width: 100%;
+  }
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  color: white;
+  margin: 1rem 0;
+  border-bottom: 4px solid #3b5899;
+  padding-bottom: 1.5rem;
+}
+.social > * {
+  margin-right: 1rem;
+  padding: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 3px;
+}
+.social > * svg {
+  font-size: 1.3rem;
+}
+.social .fa {
+  background-color: #3c5a96;
+  min-width: 4.5rem;
+}
+.social .tw {
+  background-color: #55acee;
+  min-width: 4.5rem;
+}
+.social .pn {
+  background-color: #bb0f24;
+}
+.social .go {
+  background-color: #da4b3e;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  color: #3b5899;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.tags span,
+.tags svg {
+  margin-right: 0.5rem;
+}
+
+.comments {
+  border-top: 3px dotted grey;
+  margin: 1rem 0;
+  padding: 1rem 0;
+}
+.comments .comment {
+  border-bottom: 2px dotted grey;
+  border-top: 2px dotted grey;
+  margin: 1rem 0;
+  padding: 1rem 0;
+}
+.comments .comment_head {
+  display: flex;
+  align-items: center;
+}
+.comments .comment_head .usrImg img {
+  border-radius: 50%;
+  margin-right: 1rem;
+  width: 4rem;
+  height: 4rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.comments .comment_head .info {
+  padding: 0.5rem;
+}
+.comments .comment_head .info .user {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.comments .comment_head .info .date {
+  color: #3b5899;
+}
+.comments .comment_body {
+  color: #555555;
+  font-size: 1rem;
+}
+.comments textarea {
+  border: none;
+  outline: none;
+  resize: none;
+  padding-left: 2rem;
+  font-size: 1.2rem;
+}
+.comments .btn {
+  background-color: #3c5a96;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+}
+.comments .btn:hover {
+  background-color: white;
+  color: #3c5a96;
+  border: 1px solid #3c5a96;
+}
+
+.PostForm label,
+.PostForm input,
+.PostForm textarea,
+.PostForm select,
+.PostForm option,
+.PostForm #Body {
+  display: block;
+  width: 100%;
+  text-align: left;
+  resize: none;
+  padding: 0.5rem;
+}
+@media (max-width: 39.9375em) {
+  .PostForm label,
+  .PostForm input,
+  .PostForm textarea,
+  .PostForm select,
+  .PostForm option,
+  .PostForm #Body {
+    width: 85%;
+    margin: auto;
+  }
+}
+.PostForm input,
+.PostForm textarea {
+  padding: 0.5rem;
+}
+.PostForm label {
+  color: #4e4d4d;
+}
+@media (max-width: 39.9375em) {
+  .PostForm .btn {
+    margin: 0.5rem auto;
+    width: 85%;
+  }
+}
+.PostForm img {
+  width: 50%;
+  max-height: 20rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+@media (max-width: 39.9375em) {
+  .PostForm img {
+    width: 100%;
+  }
+}/*# sourceMappingURL=posts.css.map */

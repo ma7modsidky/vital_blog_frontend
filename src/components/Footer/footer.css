@@ -1,0 +1,23 @@
+.footer {
+  background-color: #364485;
+  margin-top: auto;
+  padding: 4rem 0;
+}
+.footer__links {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  flex-wrap: wrap;
+  color: white;
+}
+.footer__links li a {
+  color: #969FC6;
+  padding-right: 1rem;
+}
+.footer__links li a:hover {
+  color: white;
+}
+.footer__info {
+  color: #969FC6;
+  font-size: 0.8rem;
+}/*# sourceMappingURL=footer.css.map */
