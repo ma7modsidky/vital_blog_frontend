@@ -1,12 +1,12 @@
-import React, {useContext, useState, useEffect , useRef} from 'react'
+import {useContext, useState, useEffect , useRef} from 'react'
 import AuthContext from '../../context/AuthContext'
 import axiosInstance from '../../axios';
 import { useParams, useNavigate  } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react';
-
+import { useModal } from '../../context/ModalContext';
 
 function PostEditForm() {
-  
+    const {openModal} = useModal()
     const navigate = useNavigate()
     const {id} = useParams()
     const {user} = useContext(AuthContext)
@@ -64,8 +64,10 @@ function PostEditForm() {
         axiosInstance
         .patch(`posts/${data.post.id}/`, fdata, config)
         .then(res=>{
+            openModal('Post updated succesfully')
             setMsg('Post updated succesfully')
-            console.log(res)
+            goBack()
+            
         })
         .catch(err => {
             setMsg(err.message.toString())
@@ -98,7 +100,7 @@ function PostEditForm() {
                     //   'searchreplace visualblocks code fullscreen',
                     //   'insertdatetime media table paste code help wordcount'
                     // ],
-                    toolbar: 'undo redo | formatselect | ' +
+                    toolbar: 'undo redo | formatselect | color ' +
                     'bold italic backcolor | alignleft aligncenter ' +
                     'alignright alignjustify | bullist numlist outdent indent | ' +
                     'removeformat | help',

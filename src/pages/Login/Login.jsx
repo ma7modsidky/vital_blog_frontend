@@ -1,9 +1,13 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import axiosInstance from '../../axios';
 import './login.scss'
 import { useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { useModal } from '../../context/ModalContext';
 export default function Login() {
+    // For Modal
+    const {openModal} = useModal();
+    // //////////////////////////////////////////////////////////////////
     const location = useLocation()
     // For toggle between login and sign up page
     const [toggle, setToggle] = useState(false)
@@ -40,14 +44,14 @@ export default function Login() {
 			[e.target.name]: e.target.value.trim(),
 		});
 	};
-    //for handling the submit button
+    //for handling the submit button in Login form
     const handleSubmit = (e) => {
         const from = location.state?.from?.pathname || '/'
 		e.preventDefault();
         console.log("coming from --> ",from)
         login(formData, from)
 	};
-
+    //for handling the submit button in SignUp form
     const handleSignUp = (e) =>{
         e.preventDefault();
         
@@ -58,8 +62,9 @@ export default function Login() {
             password : signUpData.password
         })
         .then((res) => {
-            console.log(res);
+            console.log(res)
             toggleLogin()
+            openModal("You have successfully created an account please login to continue")
             alert(
 				'You have successfully created an account please login to continue'
 			);
@@ -90,9 +95,9 @@ export default function Login() {
                 </form>
                 :
                 <form className="login-form" >
-                    <input type="text" placeholder="Email or Username" name="email" onChange={handleChange} value={formData.email}/>
-                    <input type="password" placeholder="Password" name="password" onChange={handleChange} value={formData.password}/>
-                    <button onClick={handleSubmit}>login</button>
+                    <input type="text" placeholder="Email or Username" name="email" onChange={handleChange} value={formData.email} required/>
+                    <input type="password" placeholder="Password" name="password" onChange={handleChange} value={formData.password} required/>
+                    <button onClick={handleSubmit} type='submit'>login</button>
                     {err?
                     <p style={{color:'red'}}>{err.response.data.detail}</p>:null}
                     <p className="message">Not registered? <a  onClick={toggleLogin}>Create an account</a></p>

@@ -4,11 +4,12 @@ import { useNavigate, useParams } from 'react-router-dom'
 import AuthContext from '../../context/AuthContext'
 import axiosInstance from '../../axios';
 import userimg from '../../assets/imgs/no_profile_picture.webp'
-
+import { useModal } from '../../context/ModalContext';
 
 function ProfileEdit() {
     const {user, setUser} = useContext(AuthContext)
     const navigate = useNavigate()
+    const {openModal} = useModal()
 
     const initialFormData = Object.freeze({
 		first_name: user.first_name,
@@ -41,12 +42,14 @@ function ProfileEdit() {
         axiosInstance
         .patch(`user/update_user/${user.user_id}/`, fdata, config)
         .then(res => {
+            openModal('You have successfully updated your profile')
             setUser({...user,
             'about': res.data['about'],
             'first_name': res.data['first_name'],
             'last_name' : res.data['last_name'] ,
             'profile_image': res.data['image'],
             'image': res.data['image'],})
+            
             goBack()
             
         })

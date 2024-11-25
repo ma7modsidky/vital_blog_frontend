@@ -7,7 +7,7 @@ function Modal() {
   return (
     <div className='modal-overlay'>
         <div className="modal-content" onClick={(e)=> e.stopPropagation()}>
-            {modalContent}
+            <div style={{fontWeight: 'bold'}}>{modalContent}</div>
             <button onClick={closeModal} className='close-button'>close</button>
         </div>
     </div>

@@ -3,8 +3,9 @@ import { Editor } from "@tinymce/tinymce-react";
 import AuthContext from "../../context/AuthContext";
 import axiosInstance from "../../axios";
 import { useNavigate } from "react-router-dom";
-
+import { useModal } from "../../context/ModalContext";
 function PostForm() {
+  const {openModal} = useModal();
   const navigate = useNavigate();
   function goBack() {
     navigate(-1);
@@ -70,6 +71,7 @@ function PostForm() {
       .post(`posts/`, fdata, config)
       .then((res) => {
         console.log(res);
+        openModal("you have successfully created a new post");
         goBack();
       })
       .catch((err) => {
@@ -88,6 +90,7 @@ function PostForm() {
           name="category"
           onChange={handleChange}
           value={formData.category}
+          
         >
           {categories.map((option) => {
             return (

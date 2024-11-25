@@ -2,20 +2,21 @@ import { createContext, useState} from 'react'
 import { useNavigate  } from 'react-router-dom'
 import jwt_decode from "jwt-decode";
 import axiosInstance from '../axios';
-
+import {useModal} from './ModalContext';
 
 const AuthContext = createContext()
 export default AuthContext;
 
 export const AuthProvider = ({children}) => {
+    const {openModal} = useModal();
     let [authTokens, setAuthTokens] = useState(()=> localStorage.getItem('access_token') ? localStorage.getItem('access_token') : null)
     let [user, setUser] = useState(()=> localStorage.getItem('access_token') ? jwt_decode(localStorage.getItem('access_token')) : null)
     let [err , setErr] = useState(null)
     
-
     const navigate = useNavigate();
 
     const login = (formData, from) =>{
+        
         axiosInstance
 			.post(`token/`, {
 				email: formData.email,
@@ -29,6 +30,7 @@ export const AuthProvider = ({children}) => {
                 setAuthTokens(res.data)
                 setUser(jwt_decode(res.data.access))
                 setErr(null)
+                openModal("You have successfully signed in")
                 navigate(from)
             })
             .catch((err)=>{
