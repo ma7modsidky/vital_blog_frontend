@@ -7,7 +7,7 @@ import {FaPinterest,FaGooglePlusG} from 'react-icons/fa'
 import { useEffect , useState, useContext } from 'react'
 import axiosInstance from '../../axios';
 import AuthContext from '../../context/AuthContext'
-
+import ClipLoader from "react-spinners/ClipLoader";
 import {  useParams } from 'react-router-dom'
 
 
@@ -100,7 +100,6 @@ const Comments = (props) => {
         </form>    
     </div>
 )}
-
 export default function PostDetail() {
     const { postId } = useParams();
     const [data, setData] = useState({'post': {}});
@@ -121,7 +120,13 @@ export default function PostDetail() {
         
     },[])
     const {post} = data
-    if(loading) return 'loading'
+    if(loading) return <ClipLoader
+        
+    color='#364485'
+    size={50}
+    aria-label="Loading Spinner"
+    data-testid="loader"
+  />
     if(err) return `error >> ${err}`
     return (        
         <div className='PostDetail'>

@@ -10,7 +10,7 @@ function PostList(props) {
         axiosInstance
         .get(`posts/?category__name=${categoryName}`)
         .then(res=>{
-            setData({'posts' : res.data, dataIsReturned : true})
+            setData({'posts' : res.data.results, dataIsReturned : true})
             // setData(res.data)
             console.log(data.posts)
         })

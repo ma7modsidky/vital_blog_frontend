@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axiosInstance from "../../axios";
 import { Link } from "react-router-dom";
+import { ClipLoader } from "react-spinners";
 
 function CategoryList() {
   let [data, setData] = useState({ categories: [], dataIsReturned: false });
@@ -29,7 +30,13 @@ function CategoryList() {
         </Link>
         ))}
         </div>
-      : null
+      : <ClipLoader
+        
+      color='#364485'
+      size={50}
+      aria-label="Loading Spinner"
+      data-testid="loader"
+    />
       }
 
     </div>

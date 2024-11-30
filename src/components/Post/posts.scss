@@ -230,12 +230,12 @@
 }
 
 .comments {
-  border-top: 3px dotted grey;
+  border-top: 3px solid #3b5899;
   margin: 1rem 0;
   padding: 1rem 0;
   .comment {
-    border-bottom: 2px dotted grey;
-    border-top: 2px dotted grey;
+    border-bottom: 2px solid grey;
+    // border-top: 2px dotted grey;
     margin: 1rem 0;
     padding: 1rem 0;
     &_head {

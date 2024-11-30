@@ -13,6 +13,7 @@ import NotFound from "../../pages/NotFound/NotFound";
 import CategoryList from "../../pages/Category/CategoryList";
 import Layout from "../Layout";
 import RequireAuth from "../RequireAuth";
+import AboutUs from "../../pages/AboutUs";
 
 // This component is responsible for routing and is rendered in the app component with the header and footer
 
@@ -23,11 +24,11 @@ export default function Main() {
       <Routes>
         <Route path="/" element={<Layout />}>
           {/* Public Routes */}
-          <Route path="/about" />
+          <Route path="/about" element={<AboutUs/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/category_list/" element={<CategoryList />} />
           <Route path="/category/:categoryName" element={<PostList />} />
-          <Route path="/" exact element={<Home />} />
+          <Route path="/" exacct element={<Home />} />
           <Route path="/notfound" element={<NotFound />} />
 
           {/* Protected Routes */}
