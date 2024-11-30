@@ -10,6 +10,7 @@ function Home() {
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const handlePageChange = (page) => {
+      setData({...data, dataIsReturned: false})
       setCurrentPage(page)
     }
     useEffect(() =>{
